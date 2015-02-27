@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.service;
+package org.springframework.samples.petclinic.util;
 
 import org.junit.Before;
 import org.junit.ClassRule;
