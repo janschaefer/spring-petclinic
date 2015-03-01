@@ -225,6 +225,12 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${hibernate.version}</version>
+			<exclusions>
+			  <exclusion>
+			    <artifactId>xml-apis</artifactId>
+			    <groupId>xml-apis</groupId>
+			  </exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -272,7 +278,7 @@
 			<version>${spring-framework.version}</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
+    	<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>${junit.version}</version>
@@ -411,8 +417,28 @@
 					<includes>
 						<include>**/*Tests.java</include>
 					</includes>
+                    <excludes>
+                        <exclude>**/*IntegrationTests.java</exclude>
+                    </excludes>
 				</configuration>
 			</plugin>
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <includes>
+                        <include>**/*IntegrationTests.java</include>
+                    </includes>
+                </configuration>
+                <executions>
+                  <execution>
+                    <goals>
+                      <goal>integration-test</goal>
+                      <goal>verify</goal>
+                    </goals>
+                  </execution>
+                </executions>
+            </plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
@@ -465,10 +491,29 @@
 					<server>tomcat-development-server</server>
 					<port>9967</port>
 					<path>/petclinic</path>
-                                        <systemProperties>
-                                           <JAVA_OPTS>-Xms256m -Xmx512m -XX:MaxPermSize=256m</JAVA_OPTS>
-                                        </systemProperties>
+                    <systemProperties>
+                       <JAVA_OPTS>-Xms256m -Xmx512m -XX:MaxPermSize=512m</JAVA_OPTS>
+                    </systemProperties>
 				</configuration>
+                <executions>
+                  <execution>
+                    <id>start-tomcat</id>
+                    <phase>pre-integration-test</phase>
+                    <goals>
+                      <goal>run</goal>
+                    </goals>
+                    <configuration>
+                      <fork>true</fork>
+                    </configuration>
+                  </execution>
+                  <execution>
+                    <id>stop-tomcat</id>
+                    <phase>post-integration-test</phase>
+                    <goals>
+                      <goal>shutdown</goal>
+                    </goals>
+                  </execution>
+                </executions>
 			</plugin>
             <plugin>
                 <groupId>com.tngtech.jgiven</groupId>
