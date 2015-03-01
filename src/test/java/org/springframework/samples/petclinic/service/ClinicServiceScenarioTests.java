@@ -1,7 +1,5 @@
 package org.springframework.samples.petclinic.service;
 
-import static java.util.Arrays.asList;
-
 import javax.transaction.Transactional;
 
 import org.junit.Test;
@@ -25,12 +23,7 @@ public class ClinicServiceScenarioTests extends SpringScenarioTest<GivenDatabase
         "McTavish, 1",
         "Coleman, 0" } )
     public void clinic_service_should_find_owners_by_last_name( String searchName, int expectedOwnerCount ) {
-
-        given().owners_with_following_first_and_last_names( asList(
-            asList( "First Name", "Last Name" ),
-            asList( "Harold", "Davis" ),
-            asList( "Peter", "McTavish" ),
-            asList( "Betty", "Davis" ) ) );
+        given().owners_with_following_first_and_last_names( TestFixtures.sampleOwnerNames() );
         when().searching_for_owners_with_last_name( searchName );
         then().the_result_should_exactly_contain_$_owners( expectedOwnerCount );
 
