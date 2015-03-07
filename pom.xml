@@ -492,7 +492,7 @@
 					<port>9967</port>
 					<path>/petclinic</path>
                     <systemProperties>
-                       <JAVA_OPTS>-Xms256m -Xmx512m -XX:MaxPermSize=512m</JAVA_OPTS>
+                       <JAVA_OPTS>-Xms256m -Xmx1024m -XX:MaxPermSize=512m</JAVA_OPTS>
                     </systemProperties>
 				</configuration>
                 <executions>
