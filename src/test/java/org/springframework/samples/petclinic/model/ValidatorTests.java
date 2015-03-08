@@ -12,6 +12,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.samples.petclinic.model.Person;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 /**
