@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.web;
+package org.springframework.samples.petclinic.e2e;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -28,14 +28,8 @@ public class ThenPetClinicWeb<SELF extends ThenPetClinicWeb<?>> extends Stage<SE
     protected CurrentStep currentStep;
 
     public SELF a_cute_image_with_a_dog_and_a_cat_is_shown() {
-        List<WebElement> foundElements = webDriver.findElements( By.tagName( "img" ) );
-        boolean found = false;
-        for( WebElement w : foundElements ) {
-            if( w.getAttribute( "src" ).contains( "images/pets.png" ) ) {
-                found = true;
-            }
-        }
-        Assertions.assertThat( found ).as( "cute image could not be found" ).isTrue();
+        List<WebElement> foundElements = webDriver.findElements( By.xpath( "//img/@src[contains(.,'pets.png')]/.." ) );
+        Assertions.assertThat( foundElements ).as( "cute image could not be found" ).hasSize( 1 );
         return self();
     }
 

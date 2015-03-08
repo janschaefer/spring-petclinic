@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.web;
+package org.springframework.samples.petclinic.e2e;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,6 +9,7 @@ import com.tngtech.jgiven.annotation.ExpectedScenarioState;
 
 public class WhenPetClinicWeb<SELF extends WhenPetClinicWeb<?>> extends Stage<SELF> {
     private static final String PORT = "9967";
+    private static final String ROOT_URL = "http://localhost:" + PORT + "/petclinic/";
 
     @ExpectedScenarioState
     protected WebDriver webDriver;
@@ -18,7 +19,7 @@ public class WhenPetClinicWeb<SELF extends WhenPetClinicWeb<?>> extends Stage<SE
     }
 
     private void openPage( String page ) {
-        webDriver.get( "http://localhost:" + PORT + "/petclinic/" + page );
+        webDriver.get( ROOT_URL + page );
     }
 
     public SELF the_owners_search_page_is_opened() {
