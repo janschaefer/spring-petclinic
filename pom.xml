@@ -66,6 +66,8 @@
 
 		<mysql.version>5.1.22</mysql.version>
 
+        <extraSpringProfiles></extraSpringProfiles>
+
 	</properties>
 
 	<dependencies>
@@ -381,6 +383,25 @@
 		</dependencies>
 	</dependencyManagement>
 
+    <profiles>
+      <!--
+        The demo profile is used to start the Petclinic with prefilled data
+        It works by setting the extra Spring profile testdata
+      -->
+      <profile>
+        <id>demo</id>
+        <activation>
+          <property>
+            <name>demo</name>
+          </property>
+        </activation>
+        <properties>
+          <extraSpringProfiles>, testdata</extraSpringProfiles>
+        </properties>
+
+      </profile>
+    </profiles>
+
 	<!-- Maven plugin versions are mentioned in order to guarantee the build reproducibility in the long term -->
 	<build>
 		<defaultGoal>install</defaultGoal>
@@ -483,6 +504,38 @@
 					</descriptorRefs>
 				</configuration>
 			</plugin>
+
+            <!--
+              Standalone HSQLDB server for integration testing
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.6</version>
+                <dependencies>
+                </dependencies>
+                <executions>
+                    <execution>
+                      <id>start-hsqlserver</id>
+                      <phase>pre-integration-test</phase>
+                      <goals>
+                          <goal>run</goal>
+                      </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                  <target>
+                    <java classname="org.hsqldb.server.Server" fork="yes" spawn="yes">
+                      <arg line="--database.0 mem:petclinic --dbname.0 petclinic" />
+                      <classpath refid="maven.test.classpath" />
+                    </java>
+                  </target>
+                </configuration>
+            </plugin>
+
+            <!--
+              Standalone Tomcat7 server
+            -->
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
@@ -492,7 +545,7 @@
 					<port>9967</port>
 					<path>/petclinic</path>
                     <systemProperties>
-                       <JAVA_OPTS>-Xms256m -Xmx1024m -XX:MaxPermSize=512m</JAVA_OPTS>
+                       <spring.profiles.active>jpa, serverdb ${extraSpringProfiles}</spring.profiles.active>
                     </systemProperties>
 				</configuration>
                 <executions>
@@ -515,6 +568,10 @@
                   </execution>
                 </executions>
 			</plugin>
+
+            <!--
+              JGiven HTML5 Report generation
+            -->
             <plugin>
                 <groupId>com.tngtech.jgiven</groupId>
                 <artifactId>jgiven-maven-plugin</artifactId>
