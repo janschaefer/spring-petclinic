@@ -32,4 +32,5 @@ public class WhenPetClinicWeb<SELF extends WhenPetClinicWeb<?>> extends Stage<SE
         searchElement.submit();
         return self();
     }
+
 }

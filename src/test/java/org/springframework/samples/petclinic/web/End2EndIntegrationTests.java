@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.springframework.samples.petclinic.service.FirstAndLastName;
 import org.springframework.samples.petclinic.service.GivenDatabaseState;
 import org.springframework.samples.petclinic.service.TestFixtures;
 import org.springframework.samples.petclinic.util.SpringScenarioTest;
@@ -17,7 +18,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.tngtech.jgiven.annotation.ProvidedScenarioState;
 
 @ContextConfiguration( locations = { "classpath:spring/business-config.xml" } )
-@ActiveProfiles( "spring-data-jpa" )
+@ActiveProfiles( { "spring-data-jpa", "serverdb" } )
 @RunWith( SpringJUnit4ClassRunner.class )
 public class End2EndIntegrationTests extends SpringScenarioTest<GivenDatabaseState<?>, WhenPetClinicWeb<?>, ThenPetClinicWeb<?>> {
     @ProvidedScenarioState
@@ -46,6 +47,8 @@ public class End2EndIntegrationTests extends SpringScenarioTest<GivenDatabaseSta
             TestFixtures.sampleOwnerNames() );
         when().the_owners_search_page_is_opened()
             .and().for_lastname_$_is_searched( "Davis" );
-        then();
+        then().the_resulting_owners_table_contains_exactly(
+            new FirstAndLastName( "Harold", "Davis" ),
+            new FirstAndLastName( "Betty", "Davis" ) );
     }
 }

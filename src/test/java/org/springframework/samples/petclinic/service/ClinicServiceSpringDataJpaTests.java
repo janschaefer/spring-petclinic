@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @ContextConfiguration( locations = { "classpath:spring/business-config.xml" } )
 @RunWith( SpringJUnit4ClassRunner.class )
-@ActiveProfiles( { "spring-data-jpa", "testdata" } )
+@ActiveProfiles( { "spring-data-jpa", "testdata", "inprocessdb" } )
 public class ClinicServiceSpringDataJpaTests extends AbstractClinicServiceTests {
 
 }

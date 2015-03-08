@@ -12,7 +12,7 @@ import com.tngtech.java.junit.dataprovider.DataProvider;
 import com.tngtech.java.junit.dataprovider.DataProviderRunner;
 
 @ContextConfiguration( locations = { "classpath:spring/business-config.xml" } )
-@ActiveProfiles( "spring-data-jpa" )
+@ActiveProfiles( { "spring-data-jpa", "inprocessdb" } )
 @RunWith( DataProviderRunner.class )
 public class ClinicServiceScenarioTests extends SpringScenarioTest<GivenDatabaseState<?>, WhenClinicService, ThenClinicService> {
 
