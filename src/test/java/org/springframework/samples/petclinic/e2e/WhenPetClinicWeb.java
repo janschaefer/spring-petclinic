@@ -28,9 +28,9 @@ public class WhenPetClinicWeb<SELF extends WhenPetClinicWeb<?>> extends Stage<SE
     }
 
     public SELF for_lastname_$_is_searched( String lastName ) {
-        WebElement searchElement = webDriver.findElement( By.id( "search-owner-form" ) );
+        WebElement searchElement = webDriver.findElement( By.xpath( "//input[@id='lastName']" ) );
         searchElement.sendKeys( lastName );
-        searchElement.submit();
+        webDriver.findElement( By.id( "search-owner-form" ) ).submit();
         return self();
     }
 

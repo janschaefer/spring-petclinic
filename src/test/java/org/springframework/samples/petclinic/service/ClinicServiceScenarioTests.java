@@ -14,10 +14,12 @@ import com.tngtech.java.junit.dataprovider.DataProviderRunner;
 @ContextConfiguration( locations = { "classpath:spring/business-config.xml" } )
 @ActiveProfiles( { "spring-data-jpa", "inprocessdb" } )
 @RunWith( DataProviderRunner.class )
+@ServiceTest
 public class ClinicServiceScenarioTests extends SpringScenarioTest<GivenDatabaseState<?>, WhenClinicService, ThenClinicService> {
 
     @Test
     @Transactional
+    @FeatureOwners
     @DataProvider( {
         "Davis, 2",
         "McTavish, 1",
@@ -26,7 +28,6 @@ public class ClinicServiceScenarioTests extends SpringScenarioTest<GivenDatabase
         given().owners_with_following_first_and_last_names( TestFixtures.sampleOwnerNames() );
         when().searching_for_owners_with_last_name( searchName );
         then().the_result_should_exactly_contain_$_owners( expectedOwnerCount );
-
     }
 
 }

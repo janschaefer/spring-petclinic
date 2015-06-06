@@ -34,8 +34,14 @@ public class ThenPetClinicWeb<SELF extends ThenPetClinicWeb<?>> extends Stage<SE
     }
 
     public void the_resulting_owners_table_contains_exactly( @Table FirstAndLastName... owners ) {
-        List<WebElement> rows = webDriver.findElements( By.xpath( "//table[@id='owners']/tr" ) );
+        List<WebElement> rows = webDriver.findElements( By.xpath( "//table[@id='owners']/tbody/tr" ) );
         assertThat( rows ).hasSize( owners.length );
+        for( int i = 0; i < owners.length; i++ ) {
+            WebElement tr = rows.get( i );
+            List<WebElement> cols = tr.findElements( By.xpath( "./td" ) );
+            WebElement nameColumn = cols.get( 0 );
+            assertThat( nameColumn.getText() ).isEqualTo( owners[i].First_Name + " " + owners[i].Last_Name );
+        }
     }
 
     @AfterStage

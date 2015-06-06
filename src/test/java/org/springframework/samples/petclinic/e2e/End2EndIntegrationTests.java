@@ -17,6 +17,7 @@ import com.tngtech.jgiven.annotation.ProvidedScenarioState;
 
 @ContextConfiguration( locations = { "classpath:spring/business-config.xml" } )
 @ActiveProfiles( { "spring-data-jpa", "serverdb" } )
+@E2ETest
 public class End2EndIntegrationTests extends SpringScenarioTest<GivenDatabaseState<?>, WhenPetClinicWeb<?>, ThenPetClinicWeb<?>> {
     @ProvidedScenarioState
     static WebDriver webDriver;
@@ -45,7 +46,7 @@ public class End2EndIntegrationTests extends SpringScenarioTest<GivenDatabaseSta
         when().the_owners_search_page_is_opened()
             .and().for_lastname_$_is_searched( "Davis" );
         then().the_resulting_owners_table_contains_exactly(
-            new FirstAndLastName( "Harold", "Davis" ),
-            new FirstAndLastName( "Betty", "Davis" ) );
+            new FirstAndLastName( "Betty", "Davis" ),
+            new FirstAndLastName( "Harold", "Davis" ) );
     }
 }
