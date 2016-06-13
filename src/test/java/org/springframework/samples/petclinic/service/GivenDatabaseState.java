@@ -21,7 +21,7 @@ public class GivenDatabaseState<SELF extends GivenDatabaseState<?>> extends Stag
     PetRepository petRepository;
 
     @Autowired
-    OwnerRepository ownerRepostitory;
+    OwnerRepository ownerRepository;
 
     @ProvidedScenarioState
     Pet pet;
@@ -94,7 +94,7 @@ public class GivenDatabaseState<SELF extends GivenDatabaseState<?>> extends Stag
         }
 
         for( Owner owner : owners ) {
-            ownerRepostitory.save( owner );
+            ownerRepository.save( owner );
         }
     }
 
