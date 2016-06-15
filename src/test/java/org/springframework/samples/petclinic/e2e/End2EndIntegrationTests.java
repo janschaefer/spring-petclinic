@@ -1,5 +1,6 @@
 package org.springframework.samples.petclinic.e2e;
 
+import com.tngtech.jgiven.annotation.ProvidedScenarioState;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -12,8 +13,6 @@ import org.springframework.samples.petclinic.service.TestFixtures;
 import org.springframework.samples.petclinic.util.SpringScenarioTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
-
-import com.tngtech.jgiven.annotation.ProvidedScenarioState;
 
 @ContextConfiguration( locations = { "classpath:spring/business-config.xml" } )
 @ActiveProfiles( { "spring-data-jpa", "serverdb" } )
@@ -42,11 +41,11 @@ public class End2EndIntegrationTests extends SpringScenarioTest<GivenDatabaseSta
     @Test
     public void owner_page_shows_all_existing_owners() {
         given().owners_with_following_first_and_last_names(
-            TestFixtures.sampleOwnerNames() );
+                TestFixtures.sampleOwnerNames() );
         when().the_owners_search_page_is_opened()
-            .and().for_lastname_$_is_searched( "Davis" );
+                .and().for_lastname_$_is_searched( "Davis" );
         then().the_resulting_owners_table_contains_exactly(
-            new FirstAndLastName( "Betty", "Davis" ),
-            new FirstAndLastName( "Harold", "Davis" ) );
+                new FirstAndLastName( "Betty", "Davis" ),
+                new FirstAndLastName( "Harold", "Davis" ) );
     }
 }
