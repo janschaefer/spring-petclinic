@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.etk16;
+package org.springframework.samples.petclinic.jugm16;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,7 +11,6 @@ import org.springframework.samples.petclinic.util.SpringDataProviderRunner;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 
-import javax.transaction.Transactional;
 import java.util.Collection;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -20,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ActiveProfiles( { "spring-data-jpa", "inprocessdb" } )
 @RunWith( SpringDataProviderRunner.class )
 @ServiceTest
-public class Etk16ExampleTests {
+public class Jugm16ExampleTests {
 
     @Autowired
     protected OwnerRepository ownerRepository;
@@ -29,7 +28,6 @@ public class Etk16ExampleTests {
     protected ClinicService clinicService;
 
     @Test
-    @Transactional
     public void shouldFindOwnerByLastName() {
         Owner givenOwner = new Owner();
         givenOwner.setFirstName( "Karl" );
