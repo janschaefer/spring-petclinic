@@ -10,14 +10,14 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.springframework.samples.petclinic.service.FirstAndLastName;
 import org.springframework.samples.petclinic.service.GivenDatabaseState;
 import org.springframework.samples.petclinic.service.TestFixtures;
-import org.springframework.samples.petclinic.util.SpringScenarioTest;
+import org.springframework.samples.petclinic.util.PetClinicSpringScenarioTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 
 @ContextConfiguration( locations = { "classpath:spring/business-config.xml" } )
 @ActiveProfiles( { "spring-data-jpa", "serverdb" } )
 @E2ETest
-public class End2EndIntegrationTests extends SpringScenarioTest<GivenDatabaseState<?>, WhenPetClinicWeb<?>, ThenPetClinicWeb<?>> {
+public class End2EndIntegrationTests extends PetClinicSpringScenarioTest<GivenDatabaseState<?>, WhenPetClinicWeb<?>, ThenPetClinicWeb<?>> {
     @ProvidedScenarioState
     static WebDriver webDriver;
 

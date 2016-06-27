@@ -4,7 +4,7 @@ import javax.transaction.Transactional;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.samples.petclinic.util.SpringScenarioTest;
+import org.springframework.samples.petclinic.util.PetClinicSpringScenarioTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 
@@ -15,7 +15,7 @@ import com.tngtech.java.junit.dataprovider.DataProviderRunner;
 @ActiveProfiles( { "spring-data-jpa", "inprocessdb" } )
 @RunWith( DataProviderRunner.class )
 @ServiceTest
-public class ClinicServiceScenarioTests extends SpringScenarioTest<GivenDatabaseState<?>, WhenClinicService, ThenClinicService> {
+public class ClinicServiceScenarioTests extends PetClinicSpringScenarioTest<GivenDatabaseState<?>, WhenClinicService, ThenClinicService> {
 
     @Test
     @Transactional

@@ -15,7 +15,7 @@ import org.springframework.test.context.TestContextManager;
 import com.tngtech.jgiven.integration.spring.SpringCanWire;
 import com.tngtech.jgiven.junit.ScenarioTest;
 
-public class SpringScenarioTest<GIVEN, WHEN, THEN> extends ScenarioTest<GIVEN, WHEN, THEN> {
+public class PetClinicSpringScenarioTest<GIVEN, WHEN, THEN> extends ScenarioTest<GIVEN, WHEN, THEN> {
 
     @Autowired
     private AutowireCapableBeanFactory beanFactory;
