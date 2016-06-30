@@ -1,13 +1,12 @@
 package org.springframework.samples.petclinic.service;
 
-import java.util.Collection;
-
+import com.tngtech.jgiven.annotation.ExpectedScenarioState;
 import org.assertj.core.api.Assertions;
 import org.springframework.samples.petclinic.model.Owner;
 
-import com.tngtech.jgiven.annotation.ExpectedScenarioState;
+import java.util.Collection;
 
-public class ThenClinicService {
+public class ThenClinicService2 {
 
     @ExpectedScenarioState
     protected Collection<Owner> ownersResult;

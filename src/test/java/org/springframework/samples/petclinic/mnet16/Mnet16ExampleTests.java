@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.jugm16;
+package org.springframework.samples.petclinic.mnet16;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ActiveProfiles( { "spring-data-jpa", "inprocessdb" } )
 @RunWith( SpringDataProviderRunner.class )
 @ServiceTest
-public class Jugm16ExampleTests {
+public class Mnet16ExampleTests {
 
     @Autowired
     protected OwnerRepository ownerRepository;

@@ -8,7 +8,7 @@ import org.springframework.samples.petclinic.model.Owner;
 import com.tngtech.jgiven.annotation.ProvidedScenarioState;
 import com.tngtech.jgiven.annotation.Quoted;
 
-public class WhenClinicService {
+public class WhenClinicService2 {
 
     @Autowired
     protected ClinicService clinicService;

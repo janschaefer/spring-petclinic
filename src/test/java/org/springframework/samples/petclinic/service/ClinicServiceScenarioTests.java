@@ -15,7 +15,7 @@ import com.tngtech.java.junit.dataprovider.DataProviderRunner;
 @ActiveProfiles( { "spring-data-jpa", "inprocessdb" } )
 @RunWith( DataProviderRunner.class )
 @ServiceTest
-public class ClinicServiceScenarioTests extends PetClinicSpringScenarioTest<GivenDatabaseState<?>, WhenClinicService, ThenClinicService> {
+public class ClinicServiceScenarioTests extends PetClinicSpringScenarioTest<GivenDatabaseState<?>, WhenClinicService2, ThenClinicService2> {
 
     @Test
     @Transactional
