@@ -14,6 +14,6 @@
 
   <!-- import the dataSource definition -->
   <import resource="business-config.xml"/>
-  <context:component-scan base-package="org.springframework.samples.petclinic.mnet16"/>
+  <context:component-scan base-package="org.springframework.samples.petclinic.jgiven"/>
   <jgiven:annotation-driven/>
 </beans>

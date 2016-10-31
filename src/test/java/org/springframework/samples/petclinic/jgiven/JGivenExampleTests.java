@@ -1,5 +1,7 @@
-package org.springframework.samples.petclinic.mnet16;
+package org.springframework.samples.petclinic.jgiven;
 
+import com.tngtech.jgiven.integration.spring.SpringScenarioTest;
+import com.tngtech.jgiven.junit.ScenarioTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,29 +21,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ActiveProfiles( { "spring-data-jpa", "inprocessdb" } )
 @RunWith( SpringDataProviderRunner.class )
 @ServiceTest
-public class Mnet16ExampleTests {
-
-    @Autowired
-    protected OwnerRepository ownerRepository;
-
-    @Autowired
-    protected ClinicService clinicService;
+public class JGivenExampleTests
+        extends SpringScenarioTest<GivenOwner, WhenClinicService, ThenSearchResult> {
 
     @Test
     public void shouldFindOwnerByLastName() {
-        Owner givenOwner = new Owner();
-        givenOwner.setFirstName( "Karl" );
-        givenOwner.setLastName( "Müller" );
-        givenOwner.setTelephone( "08154711" );
-        givenOwner.setAddress( "Lammstraße 13" );
-        givenOwner.setCity( "Karlsruhe" );
+        String lastName = "Müller";
 
-        ownerRepository.save( givenOwner );
+        given().an_owner_with_last_name(lastName);
 
-        Collection<Owner> foundOwners = this.clinicService.findOwnerByLastName( "Müller" );
+        when().searching_for(lastName);
 
-        assertThat( foundOwners ).hasSize( 1 );
-        assertThat( foundOwners.iterator().next().getId() ).isEqualTo( givenOwner.getId() );
+        then().exactly_$_owner_is_found(1)
+          .and().the_owner_is_the_given_one();
     }
 
 }
